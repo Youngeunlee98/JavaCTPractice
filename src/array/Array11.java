@@ -1,5 +1,7 @@
 package array;
 
+import java.util.Scanner;
+
 public class Array11 {
     /*
     설명 :
@@ -21,5 +23,66 @@ public class Array11 {
 
     출력 :
     첫 줄에 임시 반장으로 정해진 학생의 번호를 출력한다.
+     */
+
+    public int solution(int n, int[][] arr){
+        //임시 반장의 번호를 저장할 변수
+        int answer = 0;
+        //가장 많이 같은 반을 경험한 학생의 수를 저장할 변수. 초기값은 최대 정수 값
+        int max = Integer.MAX_VALUE;
+        // 각 학생에 대해 반복
+        for (int i = 1; i <= n; i++) {
+            int cnt = 0;
+            // 현재 학생(i)와 같은 반을 경험했는지 확인하기 위해 다른 학생들에 대해 반복
+            for (int j = 1; j <= n; j++) {
+                // 각 학년에 대해 반복하는 루프
+                for (int k = 1; k <= 5; k++) {
+                    if (arr[i][k] == arr[j][k]){
+                        //i번 학생과 같은반을 한 j번 학생이 몇명있는가 카운트
+                        //같은 반에 속했다면 카운트 증가
+                        cnt++;
+                        break;
+                    }
+                }
+            }
+            // 현재 학생(i)와 같은 반을 경험한 학생의 수가 이전에 확인한 학생들보다 많다면
+            if (cnt < max) {
+                // 가장 많이 같은 반을 경험한 학생의 수를 업데이트
+                max = cnt;
+                // 임시 반장을 현재 학생(i)로 업데이트
+                answer = i;
+            }
+        }
+
+        return answer;
+    }
+
+    public static void main(String[] args){
+        Array11 T = new Array11();
+
+        Scanner kb = new Scanner(System.in);
+        System.out.println("정수를 입력해주세요 : ");
+        //정수 받기
+        int n = kb.nextInt();
+        //2차원 배열
+        int[][] arr = new int[n+1][6];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= 5 ; j++) {
+                //i = 학생 번호
+                //j = 학년
+                arr[i][j] = kb.nextInt();
+            }
+        }
+        System.out.println(T.solution(n, arr));
+    }
+
+    /*
+    5
+2 3 1 7 3
+4 1 9 6 8
+5 5 2 4 4
+6 5 2 6 7
+8 4 2 2 2
      */
 }

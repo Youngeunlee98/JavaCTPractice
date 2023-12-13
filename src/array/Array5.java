@@ -1,5 +1,7 @@
 package array;
 
+import java.util.Scanner;
+
 public class Array5 {
     /*
     설명 :
@@ -12,4 +14,29 @@ public class Array5 {
     출력 :
     첫 줄에 소수의 개수를 출력합니다.
      */
+    public int solution(int n){
+        int answer = 0;
+        int[] ch = new int[n + 1];
+
+        for (int i = 2; i < n; i++) {
+            if (ch[i] == 0){
+                answer++;
+                for (int j = i; j <= n; j = j+1) {
+                    ch[j] = 1;
+                }
+            }
+        }
+        return answer;
+    }
+
+    public static void main(String[] args){
+        Array5 T = new Array5();
+
+        Scanner kb = new Scanner(System.in);
+        System.out.println("정수를 입력해주세요 : ");
+        //정수 받기
+        int n = kb.nextInt();
+
+        System.out.println(T.solution(n));
+    }
 }

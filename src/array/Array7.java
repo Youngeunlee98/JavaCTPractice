@@ -1,5 +1,7 @@
 package array;
 
+import java.util.Scanner;
+
 public class Array7 {
     /*
     설명 :
@@ -21,4 +23,35 @@ public class Array7 {
     출력 :
     첫째 줄에 입력에서 주어진 채점 결과에 대하여 가산점을 고려한 총 점수를 출력한다.
      */
+    public int solution(int n, int[] arr){
+        int answer = 0;
+        int cnt = 0;
+
+        for (int i = 0; i < n; i++) {
+            if(arr[i] == 1){
+                cnt ++;
+                answer += cnt;
+            }else {
+                cnt = 0;
+            }
+        }
+        return answer;
+    }
+
+    public static void main(String[] args){
+        Array7 T = new Array7();
+
+        Scanner kb = new Scanner(System.in);
+        System.out.println("정수를 입력해주세요 : ");
+        //정수 받기
+        int n = kb.nextInt();
+
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        System.out.println(T.solution(n, arr));
+    }
 }
